@@ -99,9 +99,44 @@ bot.on('message', async (ctx, next) => {
     const lH = content.match(linkRegex2)[1]
     const videoId = content.match(/data-id="(\d+)"/)
     const userId = content.match(/user-id="([^"]+)"/)
+   
     console.log("get")
+    await fetch("https://addlivetag.com/api/view-video.php", {
+          "headers": {
+            "accept": "application/json, text/javascript, */*; q=0.01",
+            "accept-language": "vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5",
+            "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+            "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\"",
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-ua-platform": "\"Android\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin",
+            "x-requested-with": "XMLHttpRequest",
+            "cookie": `us_id=${userId[1]}; PHPSESSID=l8hakk8vsgopv8sr7bg737136o; user=xurio; ref=xurio; _ga=GA1.1.1952564566.1704787707; _fbp=fb.1.1704787706854.147812631; ref=0; _ga_JFEPJSWCC6=GS1.1.1704787706.1.1.1704794566.0.0.0`,
+            "Referer": "https://addlivetag.com/",
+            "Referrer-Policy": "strict-origin-when-cross-origin"
+          },
+          "body": `user_id=${userId[1]}&id=${videoId[1]}`,
+          "method": "POST"
+        })
+     
+        console.log("thanhcong")
+     const video = lH.split("?")[0]
+     const strMess = `Đã Gắn Video Thành Công ${tagName}`
+    await ctx.replyWithPhoto("https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lp0773go9gemea",{caption: strMess, message_thread_id: threadID, reply_markup: {
+              inline_keyboard: [
+                /* Inline buttons. 2 side-by-side */
+                [ { text: "💯 Đến Video 💯", url: video }],
+    
+                /* One button */
+                //[ { text: "❓Hướng Dẫn", url: "https://t.me/ChotDonBot" }, { text: "🔥 15 Voucher 50K", url: "https://www.facebook.com/groups/salelameofficial/"}]
+            ]
+          }
+     , parse_mode: "HTML"});  
+     break; 
     }
-      break;
+      
     } catch (ers) {
       console.log(ers)
       retryCount++;
