@@ -48,7 +48,7 @@ bot.on('message', async (ctx, next) => {
         return next()
       } else {
     
-    
+     console.log("haha")
                  
 
         fetch("https://addlivetag.com/api/add-video.php", {
