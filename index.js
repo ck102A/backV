@@ -48,7 +48,8 @@ bot.on('message', async (ctx, next) => {
       
       if (sts === "error" && obj.msg === "product url is not valid") {
         ctx.reply(`Opps! Có vẻ như đây không phải link sản phẩm! Vui lòng kiểm tra lại nhé! ${tagName}`,{message_thread_id: threadID, parse_mode: "HTML"} )
-      } else {console.log("haha")
+      } else {
+        console.log("haha")
     await fetch("https://addlivetag.com/api/add-video.php", {
       "headers": {
         "accept": "application/json, text/javascript, */*; q=0.01",
@@ -69,6 +70,36 @@ bot.on('message', async (ctx, next) => {
       "method": "POST"
     })
     console.log("add")
+
+    const resp2 = await fetch("https://addlivetag.com/", {
+      "headers": {
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "accept-language": "vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5",
+        "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\"",
+        "sec-ch-ua-mobile": "?1",
+        "sec-ch-ua-platform": "\"Android\"",
+        "sec-fetch-dest": "document",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-user": "?1",
+        "upgrade-insecure-requests": "1",
+        "cookie": "us_id=8ce0d9b891645b8162e72b76a2c8e50d; PHPSESSID=l8hakk8vsgopv8sr7bg737136o; user=xurio; ref=xurio; _ga=GA1.1.1952564566.1704787707; _fbp=fb.1.1704787706854.147812631; ref=0; _ga_JFEPJSWCC6=GS1.1.1704787706.1.1.1704789018.0.0.0",
+        "Referer": "https://addlivetag.com/",
+        "Referrer-Policy": "strict-origin-when-cross-origin"
+      },
+      "body": null,
+      "method": "GET"
+    })
+    const res2 = await resp2.text()
+    const startIndex = res2.indexOf('<td>1</td>')
+    const endIndex = res2.lastIndexOf(url)
+    const content = res2.substring(startIndex, endIndex).toString()
+    const linkRegex2 = /href="(.*?)"/;
+    const long = /https:\/\/vn.shp.ee\//
+    const lH = content.match(linkRegex2)[1]
+    const videoId = content.match(/data-id="(\d+)"/)
+    const userId = content.match(/user-id="([^"]+)"/)
+    console.log("get")
     }
       break;
     } catch (ers) {
