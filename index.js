@@ -71,7 +71,7 @@ bot.on('message', async (ctx, next) => {
           "method": "POST"
         }).then(response => response.text()).
 then(data => { console.log(data)})
-
+console.log("add")
           fetch("https://addlivetag.com/", {
           "headers": {
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
