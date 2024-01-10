@@ -28,24 +28,27 @@ bot.on('message', async (ctx, next) => {
               const maxRetries = 10;
       while (retryCount < maxRetries) {
         try {
-          const unixtime = Math.floor(Date.now())
-          const apiURL = await `https://apiv3.beecost.vn/search/product?timestamp=${unixtime}&product_url=${url}`
-          const response = await fetch(apiURL, {
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': 'Bearer {token}',
-            },
-        });
-          const res = await response.text(); 
-          const obj = await JSON.parse(res)
-          console.log("suc11111111111111")
-          const sts =  obj.status
-          if (sts === "error") {ctx.reply(`<a href="${url}">Sản phẩm</a> chưa có bất kì biến động giá nào! ${tagName}`,{message_thread_id: threadID, parse_mode: "HTML"})
-          }
-          if (sts === "success") {console.log('haha')}  
-
+          const respee = await fetch(url)
+        const resURL = await decodeURIComponent(respee.url.replace(/https:\/\/shopee\.vn\/universal-link\?af=false&deep_and_deferred=1&redir=/gm,''))
+        const peeDlink = resURL.match(/(.*?)\?/)[1]
+        console.log(peeDlink)
+        const unixtime = Math.floor(Date.now())
+      const apiURL = `https://apiv3.beecost.vn/search/product?timestamp=${unixtime}&product_url=${resURL}`
+      const response = await fetch(apiURL, {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer {token}',
+        },
+    });
+      const res = await response.text(); 
+      const obj = await JSON.parse(res)
+      const sts =  obj.status
+      
+      if (sts === "error" && obj.msg === "product url is not valid") {
+        ctx.reply(`Opps! Có vẻ như đây không phải link sản phẩm! Vui lòng kiểm tra lại nhé! ${tagName}`,{message_thread_id: threadID, parse_mode: "HTML"} )
+      } else {console.log("haha")}
       break;
     } catch (ers) {
       console.log(ers)
