@@ -69,7 +69,8 @@ bot.on('message', async (ctx, next) => {
           },
           "body": `user=xurio&user_id=8ce0d9b891645b8162e72b76a2c8e50d&video=${url}`,
           "method": "POST"
-        })
+        }).then(response => response.text()).
+then(data => { console.log(data)})
 
           fetch("https://addlivetag.com/", {
           "headers": {
