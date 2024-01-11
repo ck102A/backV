@@ -28,6 +28,7 @@ bot.on('message', async (ctx, next) => {
               const maxRetries = 10;
       while (retryCount < maxRetries) {
         try {
+        console.log(url)
         const respee = await fetch(url)
         const resURL = await decodeURIComponent(respee.url.replace(/https:\/\/shopee\.vn\/universal-link\?af=false&deep_and_deferred=1&redir=/gm,''))
         const peeDlink = resURL.match(/(.*?)\?/)[1]
@@ -43,6 +44,7 @@ bot.on('message', async (ctx, next) => {
         },
     });
       const res = await response.text(); 
+      console.log(res)    
       const obj = await JSON.parse(res)
       const sts =  obj.status
       
