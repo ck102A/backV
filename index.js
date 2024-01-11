@@ -101,6 +101,7 @@ bot.on('message', async (ctx, next) => {
     const lH = content.match(linkRegex2)[1]
     const videoId = content.match(/data-id="(\d+)"/)
     const userId = content.match(/user-id="([^"]+)"/)
+    const img = content.match(/data-src="(.*?)"/)[1]
    
     console.log("get")
     await fetch("https://addlivetag.com/api/view-video.php", {
@@ -125,8 +126,8 @@ bot.on('message', async (ctx, next) => {
      
         console.log("thanhcong")
      const video = lH.split("?")[0]
-     const strMess = `Đã Gắn Video Thành Công ${tagName}`
-    await ctx.replyWithPhoto("https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lp0773go9gemea",{caption: strMess, message_thread_id: threadID, reply_markup: {
+     const strMess = `<b>Đã Gắn Video Thành Công</b> ${tagName}\n🚨 <i><b>Chú Ý</b>: Nếu Nhấp Link mà bị hiện <b>đen màn hình (video đã xoá)</b>. Vui lòng thoát hẳn app Shopee và thử lại!</i>`
+    await ctx.replyWithPhoto(img,{caption: strMess, message_thread_id: threadID, reply_markup: {
               inline_keyboard: [
                 /* Inline buttons. 2 side-by-side */
                 [ { text: "💯 Đến Video 💯", url: video }],
