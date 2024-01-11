@@ -5,7 +5,17 @@ import {} from 'dotenv/config'
 const bot = new Bot(process.env.BOT_TOKEN);
 
 
-
+// huong dan
+bot.command('start', async (ctx) => {
+  const chatId = ctx.message.chat.id
+  if (chatId != "-1001959268889") {
+    ctx.replyWithPhoto("https://i.imgur.com/KeA0dm9.png", {caption: `<i><b>Để sử dụng được công cụ - Bạn làm theo các bước sau đây!</b></i>
+    \n<b>Bước 1:</b> Tìm đến trang sản phẩm bạn muốn truy vấn.
+    \n<b>Bước 2:</b> Nhấn nút chia sẻ sản phẩm (như hình) và copy link chia sẻ sản phẩm.
+    \n<b>Bước 3:</b> Tham gia group https://t.me/CoNenChotDon và paste link sản phẩm vô Giỏ Video, rồi ấn Gửi.
+    \n<b>Bước 4:</b> Chờ đợi máy chủ hoàn thành add giỏ live!!`, parse_mode: "HTML"})
+  } 
+});
   
 
 bot.on('message', async (ctx, next) => {
@@ -17,7 +27,7 @@ bot.on('message', async (ctx, next) => {
     // const messID = ctx.message.message_id
     console.log(chatId + " - " + fromID) 
     const tagName = `<a href="tg://user?id=${fromID}">${fullName}</a>`
-    if (fromID == "5229925261") {
+    if (chatId == "5229925261" || chatId == "-1001959268889" && threadID == "14113") {
         const message = ctx.message.text;
         const linkRegex = /(https?:\/\/[^\s]+)/;
         const pee = /https:\/\/sh/;
