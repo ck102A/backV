@@ -155,6 +155,17 @@ bot.on('message', async (ctx, next) => {
      
     }
   }
+
+  if(content.match(render)){
+    const sleep = (ms) => {
+                return new Promise(resolve => setTimeout(resolve, ms));
+              }
+    (async () => {
+      console.log("Hello");
+      await sleep(30000)
+      console.log("world");
+    })()
+  }
     } catch (ers) {
       console.log(ers)
       retryCount++;
