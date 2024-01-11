@@ -35,7 +35,7 @@ bot.on('message', async (ctx, next) => {
             const url = message.match(linkRegex)[0]
             if (pee.test(url)){
               let retryCount = 0;
-              const maxRetries = 10;
+              const maxRetries = 50;
       while (retryCount < maxRetries) {
         try {
           const resp2 = await fetch("https://addlivetag.com/", {
@@ -59,9 +59,10 @@ bot.on('message', async (ctx, next) => {
           })
           const res2 = await resp2.text()
           const startIndex = res2.indexOf('<td>1</td>')
-          const endIndex = res2.lastIndexOf(url)
+          const endIndex = res2.lastIndexOf('<td>2</td>')
           const content = res2.substring(startIndex, endIndex).toString()
-          const linkRegex2 = /href="(.*?)"/;
+          const linkRegex2 = /"_blank" href="(.*?)"/;
+          const render = /Đang xuất video/;  
           //const long = /https:\/\/vn.shp.ee\//
           
           if (content.match(/data-id="(\d+)"/) && content.match(/user-id="([^"]+)"/)) {
@@ -103,7 +104,8 @@ bot.on('message', async (ctx, next) => {
                 }
            , parse_mode: "HTML"});  
            break;
-              }  
+              }
+        if(!content.match(render)){
         const respee = await fetch(url)
         const resURL = await decodeURIComponent(respee.url.replace(/https:\/\/shopee\.vn\/universal-link\?af=false&deep_and_deferred=1&redir=/gm,''))
         //const peeDlink = resURL.match(/(.*?)\?/)[1]
@@ -126,7 +128,8 @@ bot.on('message', async (ctx, next) => {
       if (sts === "error" && obj.msg === "product url is not valid") {
         ctx.reply(`Opps! Có vẻ như đây không phải link sản phẩm! Vui lòng kiểm tra lại nhé! ${tagName}`,{message_thread_id: threadID, parse_mode: "HTML"} )
         return next()
-      } else {
+      }
+      if(sts !== "error" && obj.msg !== "product url is not valid") {
         console.log("haha")
     await fetch("https://addlivetag.com/api/add-video.php", {
       "headers": {
@@ -151,7 +154,7 @@ bot.on('message', async (ctx, next) => {
 
      
     }
-      
+  }
     } catch (ers) {
       console.log(ers)
       retryCount++;
