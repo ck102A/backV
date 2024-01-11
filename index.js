@@ -29,10 +29,9 @@ bot.on('message', async (ctx, next) => {
       while (retryCount < maxRetries) {
         try {
         const respee = await fetch(url)
-        console.log(respee)
         const resURL = await decodeURIComponent(respee.url.replace(/https:\/\/shopee\.vn\/universal-link\?af=false&deep_and_deferred=1&redir=/gm,''))
-        const peeDlink = resURL.match(/(.*?)\?/)[1]
-        console.log(peeDlink)
+        //const peeDlink = resURL.match(/(.*?)\?/)[1]
+        //console.log(peeDlink)
         const unixtime = Math.floor(Date.now())
       const apiURL = `https://apiv3.beecost.vn/search/product?timestamp=${unixtime}&product_url=${resURL}`
       const response = await fetch(apiURL, {
