@@ -106,30 +106,32 @@ bot.on('message', async (ctx, next) => {
            break;
               }
         if(!content.match(render)){
-        const respee = await fetch(url)
-        const resURL = await decodeURIComponent(respee.url.replace(/https:\/\/shopee\.vn\/universal-link\?af=false&deep_and_deferred=1&redir=/gm,''))
-        //const peeDlink = resURL.match(/(.*?)\?/)[1]
-        //console.log(peeDlink)
-        const unixtime = Math.floor(Date.now())
-      const apiURL = `https://apiv3.beecost.vn/search/product?timestamp=${unixtime}&product_url=${resURL}`
-      const response = await fetch(apiURL, {
-        method: 'GET',
-        headers: {
-            'Content-type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': 'Bearer {token}',
-        },
-    });
-      const res = await response.text(); 
-      console.log(res)    
-      const obj = await JSON.parse(res)
-      const sts =  obj.status
-      
-      if (sts === "error" && obj.msg === "product url is not valid") {
+        const resp = await fetch("https://lichsugia.com/process_lsg.php", {
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9,vi;q=0.8,zh-CN;q=0.7,zh;q=0.6",
+      "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+      "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Google Chrome\";v=\"120\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-origin",
+      "x-requested-with": "XMLHttpRequest"
+    },
+    "referrer": "https://lichsugia.com/",
+    "referrerPolicy": "strict-origin-when-cross-origin",
+    "body": `product_url=${encodeURIComponent(url)}`,
+    "method": "POST",
+    "mode": "cors",
+    "credentials": "include"
+  })
+      const sts = await resp.text()
+      if (sts.length < 500) {
         ctx.reply(`Opps! Có vẻ như đây không phải link sản phẩm! Vui lòng kiểm tra lại nhé! ${tagName}`,{message_thread_id: threadID, parse_mode: "HTML"} )
         return next()
       }
-      if(sts !== "error" && obj.msg !== "product url is not valid") {
+      if(sts.length > 500) {
         console.log("haha")
     await fetch("https://addlivetag.com/api/add-video.php", {
       "headers": {
