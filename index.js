@@ -142,7 +142,7 @@ bot.on('message', async (ctx, next) => {
     await ctx.replyWithPhoto(img,{caption: strMess, message_thread_id: threadID, reply_markup: {
               inline_keyboard: [
                 /* Inline buttons. 2 side-by-side */
-                [ { text: "💯 Đến Video 💯", url: affLink }],
+                [ { text: "💯 Đến Video 💯", url: affLink }, { text: "💯 Add Live 💯", url: "https://t.me/CoNenChotDon/1464" }],
     
                 /* One button */
                 //[ { text: "❓Hướng Dẫn", url: "https://t.me/ChotDonBot" }, { text: "🔥 15 Voucher 50K", url: "https://www.facebook.com/groups/salelameofficial/"}]
