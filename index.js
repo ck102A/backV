@@ -136,11 +136,12 @@ bot.on('message', async (ctx, next) => {
      
         console.log("thanhcong")
      const video = lH.split("?")[0]
-     const strMess = `<b>Đã Gắn Video Thành Công</b> ${tagName}\n🚨 <i><b>Chú Ý</b>: Nếu Nhấp Link mà bị hiện <b>đen màn hình (video đã xoá)</b>. Vui lòng thoát hẳn app Shopee và thử lại!</i>`
+    const affLink = `https://shope.ee/an_redir?origin_link=${encodeURIComponent(await fetch(video).url)}&affiliate_id=17384020006&sub_id=tagsVideo`
+     const strMess = `<b>✅ Đã Gắn Video Thành Công</b> ${tagName}\n\n🚨 <i><b>Chú Ý</b>: Nếu Nhấp Link mà bị hiện <b>đen màn hình (video đã xoá)</b>. Vui lòng thoát hẳn app Shopee và thử lại!</i>`
     await ctx.replyWithPhoto(img,{caption: strMess, message_thread_id: threadID, reply_markup: {
               inline_keyboard: [
                 /* Inline buttons. 2 side-by-side */
-                [ { text: "💯 Đến Video 💯", url: video }],
+                [ { text: "💯 Đến Video 💯", url: affLink }],
     
                 /* One button */
                 //[ { text: "❓Hướng Dẫn", url: "https://t.me/ChotDonBot" }, { text: "🔥 15 Voucher 50K", url: "https://www.facebook.com/groups/salelameofficial/"}]
