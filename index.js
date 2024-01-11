@@ -139,7 +139,7 @@ bot.on('message', async (ctx, next) => {
      const sVideo = await fetch(video)
     const affLink = await `https://shope.ee/an_redir?origin_link=${encodeURIComponent(sVideo.url.split("?")[0])}&affiliate_id=17384020006&sub_id=tagsVideo`
      const strMess = `<b>✅ Đã Gắn Video Thành Công</b> ${tagName}\n\n🚨 <i><b>Chú Ý</b>: Nếu Nhấp Link mà bị hiện <b>đen màn hình (video đã xoá)</b>. Vui lòng thoát hẳn app Shopee và thử lại!</i>\n\n<b>⏳ Tốc độ add Video từ 3-5 phút. Vui lòng chờ nha! Đừng cố gửi link thêm!</b>`
-    await ctx.replyWithPhoto(img,{caption: strMess, message_thread_id: threadID, reply_markup: {
+    await ctx.replyWithPhoto("https://www.jurds.com.au/wp-content/uploads/2015/05/success1.jpg" ,{caption: strMess, message_thread_id: threadID, reply_markup: {
               inline_keyboard: [
                 /* Inline buttons. 2 side-by-side */
                 [ { text: "💯 Đến Video 💯", url: affLink }, { text: "💯 Add Live 💯", url: "https://t.me/CoNenChotDon/1464" }],
