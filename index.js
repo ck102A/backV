@@ -50,7 +50,7 @@ bot.on('message', async (ctx, next) => {
               "sec-fetch-site": "same-origin",
               "sec-fetch-user": "?1",
               "upgrade-insecure-requests": "1",
-              "cookie": "us_id=fe54f8ac79784cf8362784335fda446e; user=xurio; ref=xurio; ref=0; PHPSESSID=cmiuinq6of9oa7oo7k8t02o0l1",
+              "cookie": "us_id=8ce0d9b891645b8162e72b76a2c8e50d; PHPSESSID=l8hakk8vsgopv8sr7bg737136o; user=xurio; ref=xurio; _ga=GA1.1.1952564566.1704787707; _fbp=fb.1.1704787706854.147812631; ref=0; _ga_JFEPJSWCC6=GS1.1.1704787706.1.1.1704789018.0.0.0",
               "Referer": "https://addlivetag.com/",
               "Referrer-Policy": "strict-origin-when-cross-origin"
             },
@@ -79,7 +79,7 @@ bot.on('message', async (ctx, next) => {
                   "sec-fetch-mode": "cors",
                   "sec-fetch-site": "same-origin",
                   "x-requested-with": "XMLHttpRequest",
-                  "cookie": `us_id=fe54f8ac79784cf8362784335fda446e; user=xurio; ref=xurio; ref=0; PHPSESSID=cmiuinq6of9oa7oo7k8t02o0l1`,
+                  "cookie": `us_id=${content.match(/user-id="([^"]+)"/)[1]}; PHPSESSID=l8hakk8vsgopv8sr7bg737136o; user=xurio; ref=xurio; _ga=GA1.1.1952564566.1704787707; _fbp=fb.1.1704787706854.147812631; ref=0; _ga_JFEPJSWCC6=GS1.1.1704787706.1.1.1704794566.0.0.0`,
                   "Referer": "https://addlivetag.com/",
                   "Referrer-Policy": "strict-origin-when-cross-origin"
                 },
@@ -145,7 +145,7 @@ bot.on('message', async (ctx, next) => {
         "sec-fetch-mode": "cors",
         "sec-fetch-site": "same-origin",
         "x-requested-with": "XMLHttpRequest",
-        "cookie": "us_id=fe54f8ac79784cf8362784335fda446e; user=xurio; ref=xurio; ref=0; PHPSESSID=cmiuinq6of9oa7oo7k8t02o0l1",
+        "cookie": "us_id=8ce0d9b891645b8162e72b76a2c8e50d; ref=xurio; _ga=GA1.1.1952564566.1704787707; _fbp=fb.1.1704787706854.147812631; ref=0; PHPSESSID=gicfpeqkj9ddnq754lhpauuorm; user=xurio; _ga_JFEPJSWCC6=GS1.1.1704808576.5.1.1704808577.0.0.0",
         "Referer": "https://addlivetag.com/",
         "Referrer-Policy": "strict-origin-when-cross-origin"
       },
