@@ -112,7 +112,7 @@ bot.on('message', async (ctx, next) => {
     const videoId = content.match(/data-id="(\d+)"/)
     const userId = content.match(/user-id="([^"]+)"/)
     const img = content.match(/data-src="(.*?)"/)[1]
-   
+    if (videoId && userId) {
     console.log("get")
     await fetch("https://addlivetag.com/api/view-video.php", {
           "headers": {
@@ -139,7 +139,7 @@ bot.on('message', async (ctx, next) => {
      const sVideo = await fetch(video)
     const affLink = await `https://shope.ee/an_redir?origin_link=${encodeURIComponent(sVideo.url.split("?")[0])}&affiliate_id=17384020006&sub_id=tagsVideo`
      const strMess = `<b>✅ Đã Gắn Video Thành Công</b> ${tagName}\n\n🚨 <i><b>Chú Ý</b>: Nếu Nhấp Link mà bị hiện <b>đen màn hình (video đã xoá)</b>. Vui lòng thoát hẳn app Shopee và thử lại!</i>\n\n<b>⏳ Tốc độ add Video từ 3-5 phút. Vui lòng chờ nha! Đừng cố gửi link thêm!</b>`
-    await ctx.replyWithPhoto("https://www.jurds.com.au/wp-content/uploads/2015/05/success1.jpg" ,{caption: strMess, message_thread_id: threadID, reply_markup: {
+    await ctx.replyWithPhoto(`https://i.pinimg.com/564x/38/ab/9a/38ab9a08d13fac26b9a40083390c1058.jpg`,{caption: strMess, message_thread_id: threadID, reply_markup: {
               inline_keyboard: [
                 /* Inline buttons. 2 side-by-side */
                 [ { text: "💯 Đến Video 💯", url: affLink }, { text: "💯 Add Live 💯", url: "https://t.me/CoNenChotDon/1464" }],
@@ -149,7 +149,8 @@ bot.on('message', async (ctx, next) => {
             ]
           }
      , parse_mode: "HTML"});  
-     break; 
+     break;
+        } 
     }
       
     } catch (ers) {
