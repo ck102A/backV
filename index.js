@@ -28,8 +28,8 @@ bot.on('message', async (ctx, next) => {
               const maxRetries = 10;
       while (retryCount < maxRetries) {
         try {
-        console.log(url)
         const respee = await fetch(url)
+        console.log(respee)
         const resURL = await decodeURIComponent(respee.url.replace(/https:\/\/shopee\.vn\/universal-link\?af=false&deep_and_deferred=1&redir=/gm,''))
         const peeDlink = resURL.match(/(.*?)\?/)[1]
         console.log(peeDlink)
