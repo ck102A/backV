@@ -49,6 +49,7 @@ bot.on('message', async (ctx, next) => {
       
       if (sts === "error" && obj.msg === "product url is not valid") {
         ctx.reply(`Opps! Có vẻ như đây không phải link sản phẩm! Vui lòng kiểm tra lại nhé! ${tagName}`,{message_thread_id: threadID, parse_mode: "HTML"} )
+        return next()
       } else {
         console.log("haha")
     await fetch("https://addlivetag.com/api/add-video.php", {
