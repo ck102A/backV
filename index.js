@@ -78,11 +78,11 @@ bot.on('message', async (ctx, next) => {
                   "sec-fetch-mode": "cors",
                   "sec-fetch-site": "same-origin",
                   "x-requested-with": "XMLHttpRequest",
-                  "cookie": `us_id=${userId[1]}; PHPSESSID=l8hakk8vsgopv8sr7bg737136o; user=xurio; ref=xurio; _ga=GA1.1.1952564566.1704787707; _fbp=fb.1.1704787706854.147812631; ref=0; _ga_JFEPJSWCC6=GS1.1.1704787706.1.1.1704794566.0.0.0`,
+                  "cookie": `us_id=${content.match(/user-id="([^"]+)"/)[1]}; PHPSESSID=l8hakk8vsgopv8sr7bg737136o; user=xurio; ref=xurio; _ga=GA1.1.1952564566.1704787707; _fbp=fb.1.1704787706854.147812631; ref=0; _ga_JFEPJSWCC6=GS1.1.1704787706.1.1.1704794566.0.0.0`,
                   "Referer": "https://addlivetag.com/",
                   "Referrer-Policy": "strict-origin-when-cross-origin"
                 },
-                "body": `user_id=${userId[1]}&id=${videoId[1]}`,
+                "body": `user_id=${content.match(/user-id="([^"]+)"/)[1]}&id=${content.match(/data-id="(\d+)"/)[1]}`,
                 "method": "POST"
               })
            
