@@ -20,7 +20,8 @@ bot.command('start', async (ctx) => {
 
 bot.on('message', async (ctx, next) => {
   const chatId = ctx.message.chat.id
-    const threadID = ctx.message.message_thread_id
+    console.log(chatId)
+  const threadID = ctx.message.message_thread_id
     const fromID = ctx.message.from.id
     const lastName = (ctx.message.from.last_name == undefined) ? "":ctx.message.from.last_name;
     const fullName = `${ctx.message.from.first_name} ${lastName}`
