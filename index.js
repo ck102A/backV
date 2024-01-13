@@ -93,7 +93,7 @@ bot.on('message', async (ctx, next) => {
            const sVideo = await fetch(video)
           const affLink = await `https://shope.ee/an_redir?origin_link=${encodeURIComponent(sVideo.url.split("?")[0])}&affiliate_id=17384020006&sub_id=tagsVideo`
            const strMess = `<b>✅ Đã Gắn Video Thành Công</b> ${tagName}\n\n🚨 <i><b>Chú Ý</b>: Nếu Nhấp Link mà bị hiện <b>đen màn hình (video đã xoá)</b>. Vui lòng thoát hẳn app Shopee và thử lại!</i>\n\n<b>⏳ Tốc độ add Video từ 3-5 phút. Vui lòng chờ nha! Đừng cố gửi link thêm!</b>`
-          await ctx.replyWithPhoto(`https://i.pinimg.com/564x/38/ab/9a/38ab9a08d13fac26b9a40083390c1058.jpg`,{caption: strMess, message_thread_id: threadID, reply_markup: {
+          await ctx.replyWithPhoto(`https://i.ibb.co/t4c9RLr/photo1705162180.jpg`,{caption: strMess, message_thread_id: threadID, reply_markup: {
                     inline_keyboard: [
                       /* Inline buttons. 2 side-by-side */
                       [ { text: "💯 Đến Video 💯", url: affLink }, { text: "💯 Add Live 💯", url: "https://t.me/CoNenChotDon/1464" }],
@@ -106,32 +106,27 @@ bot.on('message', async (ctx, next) => {
            break;
               }
         if(!content.match(render)){
-        const resp = await fetch("https://lichsugia.com/process_lsg.php", {
-    "headers": {
-      "accept": "*/*",
-      "accept-language": "en-US,en;q=0.9,vi;q=0.8,zh-CN;q=0.7,zh;q=0.6",
-      "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-      "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Google Chrome\";v=\"120\"",
-      "sec-ch-ua-mobile": "?0",
-      "sec-ch-ua-platform": "\"Windows\"",
-      "sec-fetch-dest": "empty",
-      "sec-fetch-mode": "cors",
-      "sec-fetch-site": "same-origin",
-      "x-requested-with": "XMLHttpRequest"
-    },
-    "referrer": "https://lichsugia.com/",
-    "referrerPolicy": "strict-origin-when-cross-origin",
-    "body": `product_url=${encodeURIComponent(url)}`,
-    "method": "POST",
-    "mode": "cors",
-    "credentials": "include"
-  })
-      const sts = await resp.text()
-      if (sts.length < 500) {
-        ctx.reply(`Opps! Có vẻ như đây không phải link sản phẩm! Vui lòng kiểm tra lại nhé! ${tagName}`,{message_thread_id: threadID, parse_mode: "HTML"} )
-        return next()
-      }
-      if(sts.length > 500) {
+          const str = ctx.message.text;
+          const protocol = "https://";
+        
+          let urls = [];
+          let currentIndex = str.indexOf(protocol);
+        
+          while (currentIndex !== -1) {
+            const urlString = str.substring(currentIndex);
+            const endIndex = urlString.indexOf(" ") !== -1 ? urlString.indexOf(" ") : urlString.length;
+            const urlT = urlString.substring(0, endIndex);
+            urls.push(urlT);
+        
+            currentIndex = str.indexOf(protocol, currentIndex + protocol.length);
+          }
+        
+          const URLs = urls.toString().replace(","," ")
+      // if (sts.length < 500) {
+      //   ctx.reply(`Opps! Có vẻ như đây không phải link sản phẩm! Vui lòng kiểm tra lại nhé! ${tagName}`,{message_thread_id: threadID, parse_mode: "HTML"} )
+      //   return next()
+      // }
+      if(URLs.length > 0) {
         console.log("haha")
     await fetch("https://addlivetag.com/api/add-video.php", {
       "headers": {
@@ -149,7 +144,7 @@ bot.on('message', async (ctx, next) => {
         "Referer": "https://addlivetag.com/",
         "Referrer-Policy": "strict-origin-when-cross-origin"
       },
-      "body": `user=xurio&user_id=8ce0d9b891645b8162e72b76a2c8e50d&video=${url}`,
+      "body": `user=xurio&user_id=8ce0d9b891645b8162e72b76a2c8e50d&video=${URLs}`,
       "method": "POST"
     })
     console.log("add")
@@ -158,16 +153,16 @@ bot.on('message', async (ctx, next) => {
     }
   }
 
-  if(content.match(render)){
-    const sleep = (ms) => {
-                return new Promise(resolve => setTimeout(resolve, ms));
-              }
-    (async () => {
-      console.log("Hello");
-      await sleep(30000)
-      console.log("world");
-    })()
-  }
+  // if(content.match(render)){
+  //   const sleep = (ms) => {
+  //               return new Promise(resolve => setTimeout(resolve, ms));
+  //             }
+  //   (async () => {
+  //     console.log("Hello");
+  //     await sleep(30000)
+  //     console.log("world");
+  //   })()
+  // }
     } catch (ers) {
       console.log(ers)
       retryCount++;
