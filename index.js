@@ -106,7 +106,7 @@ bot.on('message', async (ctx, next) => {
            break;
               }
         if(!content.match(render)){
-          const str = ctx.message.text.replace(/\n/,'');
+          const str = ctx.message.text.replace(/\n/g,'');
           //console.log(st')
 
           const protocol = "https://";
