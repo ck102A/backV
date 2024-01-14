@@ -107,7 +107,7 @@ bot.on('message', async (ctx, next) => {
               }
         if(!content.match(render)){
           const str = ctx.message.text.replace(/\n/,' ');
-          console.log(str)
+          //console.log(str)
 
           const protocol = "https://";
         
@@ -124,6 +124,7 @@ bot.on('message', async (ctx, next) => {
           }
         
           const URLs = urls.toString().replace(","," ")
+          console.log(URLs)
       // if (sts.length < 500) {
       //   ctx.reply(`Opps! Có vẻ như đây không phải link sản phẩm! Vui lòng kiểm tra lại nhé! ${tagName}`,{message_thread_id: threadID, parse_mode: "HTML"} )
       //   return next()
