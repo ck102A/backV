@@ -106,24 +106,19 @@ bot.on('message', async (ctx, next) => {
            break;
               }
         if(!content.match(render)){
-          const str = ctx.message.text.replace(/\n/g,'');
-          //console.log(st')
-
-          const protocol = "https://";
-        
-          let urls = [];
-          let currentIndex = str.indexOf(protocol);
-        
-          while (currentIndex !== -1) {
-            const urlString = str.substring(currentIndex);
-            const endIndex = urlString.indexOf(" ") !== -1 ? urlString.indexOf(" ") : urlString.length;
-            const urlT = urlString.substring(0, endIndex);
-            urls.push(urlT);
-        
-            currentIndex = str.indexOf(protocol, currentIndex + protocol.length);
+          const strM = ctx.message.text;
+          function indexofString(str, substring) {
+    var index = str.indexOf(substring);
+    if (index !== -1) {
+        return str.substring(index);
+    } else {
+        return "Substring not found in the string";
+    }
           }
+          var resultM = indexofString(strM, "http");
+          
         
-          const URLs = urls.toString().replace(","," ")
+          const URLs = resultM.replace(/\n/g," ")
           console.log(URLs)
       // if (sts.length < 500) {
       //   ctx.reply(`Opps! Có vẻ như đây không phải link sản phẩm! Vui lòng kiểm tra lại nhé! ${tagName}`,{message_thread_id: threadID, parse_mode: "HTML"} )
