@@ -38,7 +38,7 @@ bot.on('message', async (ctx, next) => {
               const maxRetries = 50;
       while (retryCount < maxRetries) {
         try {
-          const resp2 = await fetch("https://addlivetag.com/", {
+          const resp2 = await fetch("https://longhousee.live/", {
             "headers": {
               "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
               "accept-language": "vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5",
@@ -50,8 +50,8 @@ bot.on('message', async (ctx, next) => {
               "sec-fetch-site": "same-origin",
               "sec-fetch-user": "?1",
               "upgrade-insecure-requests": "1",
-              "cookie": "us_id=8ce0d9b891645b8162e72b76a2c8e50d; PHPSESSID=l8hakk8vsgopv8sr7bg737136o; user=xurio; ref=xurio; _ga=GA1.1.1952564566.1704787707; _fbp=fb.1.1704787706854.147812631; ref=0; _ga_JFEPJSWCC6=GS1.1.1704787706.1.1.1704789018.0.0.0",
-              "Referer": "https://addlivetag.com/",
+              "cookie": "us_id=1e746e66ae52a5eed5f51d038ef3ef73; _ga=GA1.1.1458778674.1705390302; _fbp=fb.1.1705390302087.411852600; PHPSESSID=h7qo5t7voouh8q7tuou7r9fj6d; _ga_JFEPJSWCC6=GS1.1.1705403232.4.1.1705403233.0.0.0",
+              "Referer": "https://longhousee.live/",
               "Referrer-Policy": "strict-origin-when-cross-origin"
             },
             "body": null,
@@ -67,25 +67,25 @@ bot.on('message', async (ctx, next) => {
           
           if (content.match(/data-id="(\d+)"/) && content.match(/user-id="([^"]+)"/)) {
           console.log("get")
-          await fetch("https://addlivetag.com/api/view-video.php", {
-                "headers": {
-                  "accept": "application/json, text/javascript, */*; q=0.01",
-                  "accept-language": "vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5",
-                  "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-                  "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\"",
-                  "sec-ch-ua-mobile": "?1",
-                  "sec-ch-ua-platform": "\"Android\"",
-                  "sec-fetch-dest": "empty",
-                  "sec-fetch-mode": "cors",
-                  "sec-fetch-site": "same-origin",
-                  "x-requested-with": "XMLHttpRequest",
-                  "cookie": `us_id=${content.match(/user-id="([^"]+)"/)[1]}; PHPSESSID=l8hakk8vsgopv8sr7bg737136o; user=xurio; ref=xurio; _ga=GA1.1.1952564566.1704787707; _fbp=fb.1.1704787706854.147812631; ref=0; _ga_JFEPJSWCC6=GS1.1.1704787706.1.1.1704794566.0.0.0`,
-                  "Referer": "https://addlivetag.com/",
-                  "Referrer-Policy": "strict-origin-when-cross-origin"
-                },
-                "body": `user_id=${content.match(/user-id="([^"]+)"/)[1]}&id=${content.match(/data-id="(\d+)"/)[1]}`,
-                "method": "POST"
-              })
+          await fetch("https://longhousee.live/api/view-video.php", {
+            "headers": {
+              "accept": "application/json, text/javascript, */*; q=0.01",
+              "accept-language": "vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5",
+              "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+              "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\"",
+              "sec-ch-ua-mobile": "?1",
+              "sec-ch-ua-platform": "\"Android\"",
+              "sec-fetch-dest": "empty",
+              "sec-fetch-mode": "cors",
+              "sec-fetch-site": "same-origin",
+              "x-requested-with": "XMLHttpRequest",
+              "cookie": `us_id=${content.match(/user-id="([^"]+)"/)[1]}; _ga=GA1.1.1458778674.1705390302; _fbp=fb.1.1705390302087.411852600; PHPSESSID=h7qo5t7voouh8q7tuou7r9fj6d; _ga_JFEPJSWCC6=GS1.1.1705403232.4.1.1705403594.0.0.0`,
+              "Referer": "https://longhousee.live/",
+              "Referrer-Policy": "strict-origin-when-cross-origin"
+            },
+            "body": `user_id=${content.match(/user-id="([^"]+)"/)[1]}&id=${content.match(/data-id="(\d+)"/)[1]}`,
+            "method": "POST"
+          })
            
               console.log("thanhcong")
             const lH = content.match(linkRegex2)[1]  
@@ -126,7 +126,7 @@ bot.on('message', async (ctx, next) => {
       // }
       if(URLs.length > 0) {
         console.log("haha")
-    await fetch("https://addlivetag.com/api/add-video.php", {
+    await fetch("https://longhousee.live/api/add-video.php", {
       "headers": {
         "accept": "application/json, text/javascript, */*; q=0.01",
         "accept-language": "vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5",
@@ -138,11 +138,11 @@ bot.on('message', async (ctx, next) => {
         "sec-fetch-mode": "cors",
         "sec-fetch-site": "same-origin",
         "x-requested-with": "XMLHttpRequest",
-        "cookie": "us_id=8ce0d9b891645b8162e72b76a2c8e50d; ref=xurio; _ga=GA1.1.1952564566.1704787707; _fbp=fb.1.1704787706854.147812631; ref=0; PHPSESSID=gicfpeqkj9ddnq754lhpauuorm; user=xurio; _ga_JFEPJSWCC6=GS1.1.1704808576.5.1.1704808577.0.0.0",
-        "Referer": "https://addlivetag.com/",
+        "cookie": "us_id=1e746e66ae52a5eed5f51d038ef3ef73; _ga=GA1.1.1458778674.1705390302; _fbp=fb.1.1705390302087.411852600; PHPSESSID=h7qo5t7voouh8q7tuou7r9fj6d; _ga_JFEPJSWCC6=GS1.1.1705403232.4.1.1705403233.0.0.0",
+        "Referer": "https://longhousee.live/",
         "Referrer-Policy": "strict-origin-when-cross-origin"
       },
-      "body": `user=xurio&user_id=8ce0d9b891645b8162e72b76a2c8e50d&video=${URLs}`,
+      "body": `user=longhousee.live&user_id=1e746e66ae52a5eed5f51d038ef3ef73&video=${URLs}`,
       "method": "POST"
     })
     console.log("add")
