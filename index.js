@@ -126,7 +126,7 @@ bot.on('message', async (ctx, next) => {
       // }
       if(URLs.length > 0) {
         console.log("haha")
-    await fetch("https://addlivetag.com/api/add-video.php", {
+   const addVideo = await fetch("https://addlivetag.com/api/add-video.php", {
       "headers": {
         "accept": "application/json, text/javascript, */*; q=0.01",
         "accept-language": "vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5",
@@ -145,6 +145,10 @@ bot.on('message', async (ctx, next) => {
       "body": `user=xurio&user_id=8ce0d9b891645b8162e72b76a2c8e50d&video=${URLs}`,
       "method": "POST"
     })
+    const stsAdd = addVideo.text()
+    if (stsAdd.match(/Chỉ nhận yêu cầu bằng/)) {
+      ctx.reply(`Chỉ chấp nhận link tại ứng dụng Shopee (shp.ee hoặc shop.ee) ${tagName}`,{message_thread_id: threadID, parse_mode: "HTML"} )
+    }
     console.log("add")
 
      
