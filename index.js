@@ -145,9 +145,10 @@ bot.on('message', async (ctx, next) => {
       "body": `user=xurio&user_id=8ce0d9b891645b8162e72b76a2c8e50d&video=${URLs}`,
       "method": "POST"
     })
-    const stsAdd = addVideo.text()
+    const stsAdd = await addVideo.text()
     if (stsAdd.match(/Chỉ nhận yêu cầu bằng/)) {
       ctx.reply(`Chỉ chấp nhận link tại ứng dụng Shopee (shp.ee hoặc shop.ee) ${tagName}`,{message_thread_id: threadID, parse_mode: "HTML"} )
+      break;
     }
     console.log("add")
 
