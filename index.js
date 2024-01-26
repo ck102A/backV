@@ -60,7 +60,7 @@ bot.on('message', async (ctx, next) => {
           const res2 = await resp2.text()
           const startIndex = res2.indexOf('<td>1</td>')
           const endIndex = res2.lastIndexOf('<td>2</td>')
-          const content = res2.substring(startIndex, endIndex).toString()
+          const content = await res2.substring(startIndex, endIndex).toString()
           const linkRegex2 = /"_blank" href="(.*?)"/;
           const render = /Đang xuất video/;  
           //const long = /https:\/\/vn.shp.ee\//
