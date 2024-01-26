@@ -92,9 +92,9 @@ bot.on('message', async (ctx, next) => {
            const video = await lH.split("?")[0]
             console.log("video: " + video)
            const sVideo = await fetch(video)
-            const rVideo = await sVideo.url.split("?")
+            const rVideo = await sVideo.url.match(/redir=([^&]*)/) 
               console.log(rVideo)
-            const tVideo = rVideo[0]
+            const tVideo = await decodeURIComponent(match[1]).spilit("?")
           const affLink = await `https://shope.ee/an_redir?origin_link=${encodeURIComponent(tVideo)}&affiliate_id=17384020006&sub_id=tagsVideo`
            const strMess = `<b>✅ Đã Gắn Video Thành Công</b> ${tagName}\n\n🚨 <i><b>Chú Ý</b>: Nếu Nhấp Link mà bị hiện <b>đen màn hình (video đã xoá)</b>. Vui lòng thoát hẳn app Shopee và thử lại!</i>\n\n<b>⏳ Tốc độ add Video từ 3-5 phút. Vui lòng chờ nha! Đừng cố gửi link thêm!</b>`
           await ctx.replyWithPhoto(`https://i.ibb.co/t4c9RLr/photo1705162180.jpg`,{caption: strMess, message_thread_id: threadID, reply_markup: {
