@@ -50,7 +50,7 @@ bot.on('message', async (ctx, next) => {
               "sec-fetch-site": "same-origin",
               "sec-fetch-user": "?1",
               "upgrade-insecure-requests": "1",
-              "cookie": "us_id=9315dee98724ac0eb92b0f9332444e0c; PHPSESSID=9cknfghst9pt3m1r7rsddmqajn; user=17312120000; ref=17312120000; _ga=GA1.1.991988644.1706445266; _fbp=fb.1.1706445266216.835537804; _ga_JFEPJSWCC6=GS1.1.1706445266.1.1.1706446751.0.0.0",
+              "cookie": `us_id=${fromID}; PHPSESSID=9cknfghst9pt3m1r7rsddmqajn; user=${fromID} ; ref=${fromID}; _ga=GA1.1.991988644.1706445266; _fbp=fb.1.1706445266216.835537804; _ga_JFEPJSWCC6=GS1.1.1706445266.1.1.1706446751.0.0.0`,
               "Referer": "https://addlivetag.com/",
               "Referrer-Policy": "strict-origin-when-cross-origin"
             },
@@ -79,7 +79,7 @@ bot.on('message', async (ctx, next) => {
                   "sec-fetch-mode": "cors",
                   "sec-fetch-site": "same-origin",
                   "x-requested-with": "XMLHttpRequest",
-                  "cookie": `us_id=${content.match(/user-id="([^"]+)"/)[1]}; PHPSESSID=9cknfghst9pt3m1r7rsddmqajn; user=17312120000; ref=17312120000; _ga=GA1.1.991988644.1706445266; _fbp=fb.1.1706445266216.835537804; _ga_JFEPJSWCC6=GS1.1.1706445266.1.1.1706446751.0.0.0`,
+                  "cookie": `us_id=${content.match(/user-id="([^"]+)"/)[1]}; PHPSESSID=9cknfghst9pt3m1r7rsddmqajn; user=${fromID}; ref=${fromID}; _ga=GA1.1.991988644.1706445266; _fbp=fb.1.1706445266216.835537804; _ga_JFEPJSWCC6=GS1.1.1706445266.1.1.1706446751.0.0.0`,
                   "Referer": "https://addlivetag.com/",
                   "Referrer-Policy": "strict-origin-when-cross-origin"
                 },
@@ -147,11 +147,11 @@ const tVideo = await rVideo.substring(startIndex2, endIndex2);
         "sec-fetch-mode": "cors",
         "sec-fetch-site": "same-origin",
         "x-requested-with": "XMLHttpRequest",
-        "cookie": "us_id=9315dee98724ac0eb92b0f9332444e0c; PHPSESSID=9cknfghst9pt3m1r7rsddmqajn; user=17312120000; ref=17312120000; _ga=GA1.1.991988644.1706445266; _fbp=fb.1.1706445266216.835537804; _ga_JFEPJSWCC6=GS1.1.1706445266.1.1.1706446751.0.0.0",
+        "cookie": `us_id=${fromID}; PHPSESSID=9cknfghst9pt3m1r7rsddmqajn; user=${fromID}; ref=${fromID}; _ga=GA1.1.991988644.1706445266; _fbp=fb.1.1706445266216.835537804; _ga_JFEPJSWCC6=GS1.1.1706445266.1.1.1706446751.0.0.0`,
         "Referer": "https://addlivetag.com/",
         "Referrer-Policy": "strict-origin-when-cross-origin"
       },
-      "body": `user=17312120000&user_id=9315dee98724ac0eb92b0f9332444e0c&video=${URLs}`,
+      "body": `user=${fromID}&user_id=${fromID}&video=${URLs}`,
       "method": "POST"
     })
     const stsAdd = await addVideo.text()
