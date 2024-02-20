@@ -10,6 +10,7 @@ const bot = new Bot(process.env.BOT_TOKEN);
 
 bot.on('message', async (ctx, next) => {
   const chatId = ctx.message.chat.id
+  console.log(chatId)
       async function back () {
 var a = 1
 var b = 10
